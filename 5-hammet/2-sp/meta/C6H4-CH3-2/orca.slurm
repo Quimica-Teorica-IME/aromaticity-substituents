@@ -1,0 +1,27 @@
+#!/bin/bash
+#SBATCH --job-name=C6H4-CH3-2
+#SBATCH --partition=normal
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=8
+#SBATCH --time=720:00:00
+
+
+module load orca/6.0.1.avx2
+
+# Definir variáveis importantes
+export ORCA_INPUT="C6H4-CH3-2.inp"          # Nome do arquivo de entrada
+export ORCA_OUTPUT="C6H4-CH3-2.out"         # Nome do arquivo de saída
+export ORCA_SCRDIR=$SLURM_JOB_ID             # Diretório temporário para arquivos de scratch
+
+# Criar diretório de scratch
+mkdir -p $ORCA_SCRDIR
+
+# Executar o ORCA
+orca $ORCA_INPUT > $ORCA_OUTPUT
+
+# Mover arquivos de scratch de volta para o diretório de trabalho
+mv $ORCA_SCRDIR/* .
+
+# Limpar diretório de scratch
+rm -rf $ORCA_SCRDIR
+
