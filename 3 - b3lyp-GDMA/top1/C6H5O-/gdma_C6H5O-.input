@@ -1,0 +1,10 @@
+File C6H5O-.fchk
+Angstrom
+Multipoles
+  Limit 2
+  Switch 4.0
+  Radius H 0.35
+  Punch file.punch
+  ADD TOP(1) 0.0 0.0  1.00
+Start
+Finish
